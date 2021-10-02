@@ -1,1 +1,94 @@
-.TableComponent {}
+$purple: #716eb6;
+
+.TableComponent {
+  padding: 20px;
+}
+
+.searchIcon {
+  position: absolute;
+  margin: 15px 15px 15px 5px;
+}
+.search {
+  padding-bottom: 10px;
+
+  input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid $purple;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 25px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 40%;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+td:first-of-type {
+  padding-left: 36px;
+  width: 66px;
+}
+
+.table {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1.25;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.table td {
+  padding: 12px 6px 12px 12px;
+  word-wrap: break-word;
+  width: 30%;
+}
+
+.table thead tr {
+  color: #fff;
+}
+
+.table thead th {
+  background-color: $purple;
+  padding: 18px 6px 18px 12px;
+}
+
+.table thead th:first-child {
+  border-top-left-radius:  4px;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 4px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid rgba(113, 110, 182, 0.15);
+}
+
+.table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(113, 110, 182, 0.15);
+  color: #272b37;
+}

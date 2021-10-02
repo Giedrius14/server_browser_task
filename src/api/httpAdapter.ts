@@ -50,9 +50,9 @@ export default class HttpAdapter implements HttpInterface {
   constructor(protected axiosInstance: AxiosInstance) {
     this.axiosInstance.defaults.headers = {
       ...this.axiosInstance.defaults.headers,
-      // 'Cache-Control': 'no-cache, no-store, must-revalidate',
-      // Pragma: 'no-cache',
-      // Expires: 0
+      get: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
     };
   }
 
@@ -87,8 +87,10 @@ export default class HttpAdapter implements HttpInterface {
     } else {
       this.axiosInstance.defaults.headers = {
         ...this.axiosInstance.defaults.headers,
-        Authorization: token,
-      };
+        get: {
+          Authorization: `Bearer ${token}`,
+        },
+      } as AxiosRequestConfig;
     }
   }
 

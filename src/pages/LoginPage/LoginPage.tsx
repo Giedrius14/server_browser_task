@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './LoginPage.module.scss';
 import * as Yup from 'yup';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import axios from 'axios';
+import api from '../../api';
 
 const LoginPage = (props: any) => {
   return (
@@ -19,24 +19,12 @@ const LoginPage = (props: any) => {
             .required('Password is required'),
         })}
         onSubmit={({ username, password }) => {
-          console.log('fields', username, password);
-          axios
-            .post('https://playground.tesonet.lt/v1/tokens', {
-              username,
-              password,
-            })
-            .then((user) => {
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-              sessionStorage.setItem('user', JSON.stringify(user));
-              // setAuth(user);
-
-              console.log(props);
-              // // get return url from location state or default to home page
-              const { from } = props.history.location.state || {
-                from: { pathname: '/' },
-              };
-              props.history.push(from);
-            });
+          api.login(username, password).then(() => {
+            const { from } = props.history.location.state || {
+              from: { pathname: '/' },
+            };
+            props.history.push(from);
+          });
         }}
         render={({ errors, status, touched }) => (
           <Form>

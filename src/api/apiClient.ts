@@ -29,4 +29,21 @@ export default class ApiClient {
   public getHealthCheck(): any {
     return this.http.get('/');
   }
+
+  public login(username: string, password: string): any {
+    return this.http
+      .post('https://playground.tesonet.lt/v1/tokens', {
+        username,
+        password,
+      })
+      .then((res: { token: string }) => {
+        localStorage.setItem('token', res.token);
+
+        this.http.setAuthorizationToken(res.token);
+      });
+  }
+
+  public getServers(): any {
+    return this.http.get('https://playground.tesonet.lt/v1/servers');
+  }
 }
