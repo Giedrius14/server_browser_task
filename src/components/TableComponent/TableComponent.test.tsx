@@ -6,7 +6,14 @@ describe('<TableComponent />', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<TableComponent />);
+    component = shallow(
+      <TableComponent
+        handleSearch={() => ({})}
+        handleSortAction={() => ({})}
+        servers={[]}
+        sortConfig={{}}
+      />
+    );
   });
 
   test('It should mount', () => {

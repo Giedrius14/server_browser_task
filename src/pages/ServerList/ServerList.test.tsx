@@ -1,13 +1,13 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import HomePage from './HomePage';
+import ServerList from './ServerList';
 import { shallow } from 'enzyme';
 
-describe('<HomePage />', () => {
+describe('<ServerList />', () => {
   let wrapper: any;
 
   beforeEach(() => {
-    wrapper = shallow(<HomePage />);
+    wrapper = shallow(<ServerList />);
   });
 
   afterEach(() => {

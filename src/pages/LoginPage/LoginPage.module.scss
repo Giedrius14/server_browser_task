@@ -1,1 +1,54 @@
-.LoginPage {}
+@import "../../styles/variables";
+
+.LoginPage {
+  border-radius: 5px;
+  padding: 20px;
+}
+
+form {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+label,
+input {
+  display: block;
+  width: 100%;
+}
+
+label {
+  margin-bottom: 5px;
+  height: 22px;
+}
+
+input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid $purple;
+}
+
+.inputError {
+  border-color: $error;
+}
+
+.inputFeedback {
+  color: $error;
+  margin-top: -15px;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: $purple;
+  color: white;
+  border-radius: 8px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: $purple;
+}

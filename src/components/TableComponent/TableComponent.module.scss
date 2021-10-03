@@ -1,7 +1,6 @@
-$purple: #716eb6;
+@import "../../styles/variables";
 
 .TableComponent {
-  padding: 20px;
 }
 
 .searchIcon {
@@ -9,10 +8,8 @@ $purple: #716eb6;
   margin: 15px 15px 15px 5px;
 }
 .search {
-  padding-bottom: 10px;
-
   input[type=text] {
-    width: 130px;
+    width: 300px;
     box-sizing: border-box;
     border: 2px solid $purple;
     border-radius: 4px;
@@ -21,12 +18,6 @@ $purple: #716eb6;
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 25px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-  }
-
-  input[type=text]:focus {
-    width: 40%;
   }
 }
 
@@ -53,7 +44,6 @@ td:first-of-type {
   border-radius: 4px;
   font-size: 18px;
   line-height: 1.25;
-  margin-bottom: 24px;
   width: 100%;
 }
 

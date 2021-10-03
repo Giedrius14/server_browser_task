@@ -37,7 +37,7 @@ export default class ApiClient {
         password,
       })
       .then((res: { token: string }) => {
-        localStorage.setItem('token', res.token);
+        sessionStorage.setItem('token', res.token);
 
         this.http.setAuthorizationToken(res.token);
       });

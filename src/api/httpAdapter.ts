@@ -51,7 +51,7 @@ export default class HttpAdapter implements HttpInterface {
     this.axiosInstance.defaults.headers = {
       ...this.axiosInstance.defaults.headers,
       get: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
       },
     };
   }
