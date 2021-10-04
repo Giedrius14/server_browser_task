@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TableComponent from './TableComponent';
+import { Sort } from '../../interfaces/ServerList';
 
 describe('<TableComponent />', () => {
   let component;
@@ -8,10 +9,10 @@ describe('<TableComponent />', () => {
   beforeEach(() => {
     component = shallow(
       <TableComponent
-        handleSearch={() => ({})}
-        handleSortAction={() => ({})}
+        handleSearch={jest.fn()}
+        handleSortAction={jest.fn()}
         servers={[]}
-        sortConfig={{}}
+        sortConfig={{} as Sort}
       />
     );
   });

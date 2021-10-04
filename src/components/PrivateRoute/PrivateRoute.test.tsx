@@ -1,5 +1,4 @@
 import React from 'react';
-import '@testing-library/jest-dom/extend-expect';
 import PrivateRoute from './PrivateRoute';
 import { shallow } from 'enzyme';
 

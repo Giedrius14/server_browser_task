@@ -1,14 +1,16 @@
 import React from 'react';
 import TableHeader from './TableHeader/TableHeader';
 import styles from './TableComponent.module.scss';
-import { FaSearch } from 'react-icons/all';
+import { FaSearch } from 'react-icons/fa';
 import { Server } from '../../interfaces/Server';
+import { Sort } from '../../interfaces/ServerList';
+import TableRow from './TableRow/TableRow';
 
-interface TableProps {
+interface TableInterface {
   servers: Server[];
   handleSortAction: (fieldName: string) => void;
   handleSearch: (event: any) => void;
-  sortConfig: {};
+  sortConfig: Sort;
 }
 
 const TableComponent = ({
@@ -16,7 +18,7 @@ const TableComponent = ({
   handleSearch,
   handleSortAction,
   sortConfig,
-}: TableProps) => (
+}: TableInterface) => (
   <div className={styles.TableComponent}>
     <div className={styles.search}>
       <>
@@ -29,20 +31,17 @@ const TableComponent = ({
         handleSortAction={handleSortAction}
         sortConfig={sortConfig}
       />
-      <TableBody servers={servers} />
+      <tbody>
+        {servers?.map(({ name, distance }: Server, index: number) => (
+          <TableRow
+            key={`${index}-${name}`}
+            name={name}
+            distance={distance}
+          ></TableRow>
+        ))}
+      </tbody>
     </table>
   </div>
-);
-
-const TableBody = ({ servers }: { servers: Server[] }) => (
-  <tbody>
-    {servers?.map(({ name, distance }: Server, index: number) => (
-      <tr key={`${name}${index}`}>
-        <td className="p-2">{name}</td>
-        <td className="p-2">{distance}</td>
-      </tr>
-    ))}
-  </tbody>
 );
 
 export default TableComponent;

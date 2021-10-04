@@ -1,15 +1,20 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import TableHeader from './TableHeader';
 
 describe('<TableHeader />', () => {
-  let component;
+  let wrapper: ShallowWrapper;
 
   beforeEach(() => {
-    component = shallow(<TableHeader />);
+    wrapper = shallow(
+      <TableHeader
+        handleSortAction={jest.fn()}
+        sortConfig={{ fieldName: '', order: '' }}
+      />
+    );
   });
 
   test('It should mount', () => {
-    expect(component.length).toBe(1);
+    expect(wrapper.length).toBe(1);
   });
 });

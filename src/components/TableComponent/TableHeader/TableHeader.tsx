@@ -2,8 +2,17 @@ import React from 'react';
 import styles from './TableHeader.module.scss';
 import { DISTANCE, NAME } from '../../../constants';
 import HeaderCell from '../HeaderCell/HeaderCell';
+import { Sort } from '../../../interfaces/ServerList';
 
-const TableHeader = ({ handleSortAction, sortConfig }: any) => (
+interface TableHeaderInterface {
+  handleSortAction: (fieldName: string) => void;
+  sortConfig: Sort;
+}
+
+const TableHeader = ({
+  handleSortAction,
+  sortConfig,
+}: TableHeaderInterface) => (
   <thead className={styles.TableHeader}>
     <tr>
       <HeaderCell

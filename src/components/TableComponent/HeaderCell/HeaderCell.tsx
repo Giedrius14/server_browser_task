@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './HeaderCell.module.scss';
-import { FaSort, FaSortDown, FaSortUp } from 'react-icons/all';
+import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa';
 import { ASCENDING } from '../../../constants';
 
 const HeaderCell = ({ name, handleSortAction, sortDirection }: any) => {

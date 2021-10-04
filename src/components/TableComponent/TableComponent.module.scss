@@ -60,6 +60,7 @@ td:first-of-type {
 .table thead th {
   background-color: $purple;
   padding: 18px 6px 18px 12px;
+  cursor: pointer;
 }
 
 .table thead th:first-child {

@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from '@reduxjs/toolkit';
 import { Server } from '../../interfaces/Server';
 import api from '../../api';
 import { RootState } from '../../store/store';
@@ -41,23 +45,29 @@ const serverListSlice = createSlice({
   },
 });
 
-export const {} = serverListSlice.actions;
-
-const getAllServers = (state: RootState) => state.serverPage.servers;
-export const selectAllServers = (sort: Sort) => (state: RootState) =>
-  sortServers(getAllServers(state), sort);
-
-export const filterServers = (searchQuery: any, sort: Sort) => (
-  state: RootState
-) =>
-  sortServers(
-    getAllServers(state).filter(({ name, distance }: Server) =>
-      isNaN(searchQuery)
-        ? name.toLowerCase().includes(searchQuery)
-        : distance === searchQuery
-    ),
-    sort
+const getAllServers = createSelector(
+  (state: RootState) => state.serverPage.servers,
+  (servers: Server[]) => servers
+);
+export const selectAllServers = (sort: Sort) =>
+  createSelector(
+    (state: RootState) => getAllServers(state),
+    (servers: Server[]) => sortServers(servers, sort)
   );
+
+export const filterServers = (sort: Sort, searchQuery: any) =>
+  createSelector(
+    (state: RootState) => selectAllServers(sort)(state),
+    (servers: Server[]) => handleFiltering(servers, searchQuery)
+  );
+
+const handleFiltering = (servers: Server[], searchQuery: any) => {
+  return servers.filter(({ name, distance }: Server) =>
+    isNaN(searchQuery)
+      ? name.toLowerCase().includes(searchQuery)
+      : distance.toString().includes(searchQuery.toString())
+  );
+};
 
 const sortServers = (servers: Server[], sort: Sort) => {
   return servers.slice().sort((a: any, b: any) => {

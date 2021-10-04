@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './ServerList.module.scss';
 import TableComponent from '../../components/TableComponent/TableComponent';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchServers,
   filterServers,
@@ -10,6 +9,7 @@ import {
 import { RootState } from '../../store/store';
 import { ASCENDING, DESCENDING } from '../../constants';
 import { Sort } from '../../interfaces/ServerList';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 const ServerList = () => {
   const [searchQuery, setSearchQuery] = React.useState('' as any);
@@ -18,12 +18,12 @@ const ServerList = () => {
     order: DESCENDING,
   } as Sort);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const servers = searchQuery
-    ? useSelector(filterServers(searchQuery, sort))
-    : useSelector(selectAllServers(sort));
+    ? useAppSelector(filterServers(sort, searchQuery))
+    : useAppSelector(selectAllServers(sort));
 
-  const serversStatus = useSelector(
+  const serversStatus = useAppSelector(
     (state: RootState) => state.serverPage.status
   );
 
@@ -32,8 +32,12 @@ const ServerList = () => {
   }, [dispatch]);
 
   const handleSearch = (event: any) => {
-    const filter = event.target.value;
-    setSearchQuery((isNaN(filter) && filter.trim().toLowerCase()) || filter);
+    const filter = event.target.value?.trim();
+    if (!filter) {
+      return;
+    }
+
+    setSearchQuery(filter.toLowerCase() || filter);
   };
 
   const handleSortAction = (fieldName: string) => {
